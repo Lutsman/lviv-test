@@ -1,6 +1,11 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import {}  from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
+
 import {rootReducer} from "../reducer";
+import {sagas} from '../middlewares/sagas';
+import {randomId} from "../middlewares/randomId";
+
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -9,6 +14,18 @@ const composeEnhancers =
             // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
         }) : compose;
 
-const enhancer = composeEnhancers(applyMiddleware());
+const sagaMiddleware = createSagaMiddleware();
+let middlewares = [sagaMiddleware, randomId];
 
-export const store = createStore(rootReducer, enhancer);
+if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(logger);
+}
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(...middlewares),
+);
+
+sagas.forEach(saga => sagaMiddleware.run(saga));
+
+export default store;

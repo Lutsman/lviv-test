@@ -1,5 +1,7 @@
 import {combineReducers} from 'redux';
 
+import articleReducer from './articles';
+
 export const rootReducer = combineReducers({
-    quiz: state => null,
+    articles: articleReducer,
 });

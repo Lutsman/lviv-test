@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
@@ -13,6 +12,10 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.0",
     "reselect": "^4.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

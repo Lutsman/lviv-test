@@ -1,7 +1,14 @@
 import * as React from 'react';
 
-export const NewArticle = props => {
-    const {} = props;
+import {Header} from "./Header";
+import {ArticleForm} from "./ArticleForm";
 
-    return ();
-};
+export const NewArticle = () => (
+    <div>
+        <Header
+            btnBack={true}>
+            <h2>Create new article</h2>
+        </Header>
+        <ArticleForm/>
+    </div>
+);
