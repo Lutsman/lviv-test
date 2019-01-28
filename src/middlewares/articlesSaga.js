@@ -24,7 +24,7 @@ export function* loadArticles() {
 }
 
 export function* saveArticles() {
-    const articles = select(articlesSelector);
+    const articles = yield select(articlesSelector);
     yield call(setArticles, articles);
 }
 

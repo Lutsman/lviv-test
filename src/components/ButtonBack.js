@@ -1,7 +1,21 @@
 import * as React from 'react';
 
-export const ButtonBack = props => {
-    const {} = props;
+export class ButtonBack extends React.Component {
+    static contextTypes = {
+        router: () => null,
+    };
 
-    return (<div>back</div>);
-};
+    render() {
+        const {children} = this.props;
+
+        return (
+            <button
+                className="button-back"
+                onClick={this.handleClick}>
+                {children}
+            </button>
+        );
+    }
+
+    handleClick = () => this.context.router.history.goBack();
+}
