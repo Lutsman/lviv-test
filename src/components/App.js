@@ -12,9 +12,9 @@ export class App extends Component {
             <div className="page">
                 <Switch>
                     <Redirect from="/" exact to="/articles"/>
-                    <Route path="/articles" component={ArticleListPage}/>
-                    <Route path="/articles/article:id" component={ArticlePage}/>
-                    <Route path="/articles/new-article" component={NewArticlePage}/>
+                    <Route path="/articles" exact component={ArticleListPage}/>
+                    <Route path="/articles/single/:id" component={ArticlePage}/>
+                    <Route path="/articles/new" component={NewArticlePage}/>
                 </Switch>
             </div>
         );

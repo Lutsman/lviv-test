@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import {ArticleList} from "../ArticleList";
 
-export const ArticleListPage = props => {
-    const {} = props;
-
+export const ArticleListPage = () => {
     return (
         <div>
             <ArticleList/>

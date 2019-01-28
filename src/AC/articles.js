@@ -36,6 +36,7 @@ export const articleCreate = article => ({
     type: ARTICLE_CREATE,
     payload: {article},
     generateId: true,
+    generateDate: true,
 });
 
 export const articleDelete = id => ({

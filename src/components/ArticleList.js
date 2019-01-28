@@ -1,16 +1,47 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {ArticlePreview} from "./ArticlePreview";
+import {LoadingSpinner} from "./LoadingSpinner";
 import {articleDelete, articlesLoad} from "../AC/articles";
+import {articlesSelector, loadArticlesErrorSelector, loadedSelector, loadingSelector} from "../selectors/articles";
 
 export class ArticleListComponent extends React.Component {
     componentDidMount() {
+        const {loaded, loading} = this.props;
+
+        if (loaded || loading) return;
+
         this.props.loadArticles();
     }
 
     render() {
-        const {articles, deleteArticle} = this.props;
+        return (
+            <div className="article-list">
+                {this.getBody()}
+                <div className="controls">
+                    <Link to="/articles/new">
+                        <button className="button-add">+</button>
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    getBody() {
+        const {articles, deleteArticle, loading, loaded, loadError} = this.props;
+
+        if (loading) return (<LoadingSpinner/>);
+
+        if (!loaded) {
+            if (loadError) {
+                return (<h2>{loadError.message}</h2>);
+            }
+
+            return null;
+        }
+
         const articleItems = articles && articles.map(article => {
             const handleDelete = () => deleteArticle(article.id);
 
@@ -23,16 +54,15 @@ export class ArticleListComponent extends React.Component {
 
         if (!articleItems) return null;
 
-        return (
-            <div className="article-list">
-                {articleItems}
-            </div>
-        );
+        return (<ul>{articleItems}</ul>);
     }
 }
 
 const mapStateToProps = state => ({
-    articles: state.articles,
+    articles: articlesSelector(state),
+    loaded: loadedSelector(state),
+    loading: loadingSelector(state),
+    loadError: loadArticlesErrorSelector(state),
 });
 
 const mapDispatchToPtops = dispatch => ({

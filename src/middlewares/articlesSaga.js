@@ -9,9 +9,10 @@ import {
 } from "../constants";
 import {articlesLoadError, articlesLoadStart, articlesLoadSuccess, articlesSave} from "../AC/articles";
 import {getArticles, setArticles} from "../api/articles";
+import {articlesSelector, loadedSelector} from "../selectors/articles";
 
 export function* loadArticles() {
-    const loaded = select();
+    const loaded = yield select(loadedSelector);
     if (loaded) return;
     yield put(articlesLoadStart());
     try {
@@ -23,12 +24,12 @@ export function* loadArticles() {
 }
 
 export function* saveArticles() {
-    const articles = select();
+    const articles = select(articlesSelector);
     yield call(setArticles, articles);
 }
 
 export function* dispatchArticlesSaving() {
-    put(articlesSave());
+    yield put(articlesSave());
 }
 
 export default function* () {

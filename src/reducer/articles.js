@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-    const {type, payload, randomId} = action;
+    const {type, payload, randomId, currentDate} = action;
 
     switch (type) {
         case ARTICLES_LOAD_START:
@@ -29,39 +29,43 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
                 loaded: true,
-                items: action.articles,
+                items: payload.articles,
             };
         case ARTICLES_LOAD_ERROR:
+            const {error} = payload;
+
+            error.type = ARTICLES_LOAD_ERROR;
+
             return {
                 ...state,
                 loading: false,
-                errors: [...state.errors, payload.error],
+                errors: [...state.errors, error],
             };
         case ARTICLE_CREATE:
-            const {article} = action;
             return {
                 ...state,
                 items: [
                     ...state.items,
                     {
-                        ...article,
+                        ...payload.article,
                         id: randomId,
+                        date: currentDate,
                     },
                 ],
             };
         case ARTICLE_DELETE:
             return {
                 ...state,
-                items: state.items.filter(item => item.id !== action.id),
+                items: state.items.filter(item => item.id !== payload.id),
             };
         case ARTICLE_COMMENT_CREATE:
             return {
                 ...state,
                 items: state.items.map(article =>
-                    article.id === action.articleId ?
+                    article.id === payload.articleId ?
                         {
                             ...article,
-                            comments: [...article.comments, {...action.comment, id: randomId}],
+                            comments: [...article.comments, {...payload.comment, id: randomId}],
                         } :
                         article),
             };
@@ -69,10 +73,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 items: state.items.map(item =>
-                    item.id === action.articleId ?
+                    item.id === payload.articleId ?
                         {
                             ...item,
-                            comments: item.comments.filter(comment => comment.id !== action.commentId),
+                            comments: item.comments.filter(comment => {
+                                return comment.id !== payload.commentId;
+                            }),
                         } :
                         item),
             };

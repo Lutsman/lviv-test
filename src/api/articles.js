@@ -2,7 +2,8 @@ import fixtureArticles from '../fixtures';
 
 export const getArticles = () => new Promise((resolve, reject) => {
     if (typeof(Storage) !== "undefined") {
-        const articles = JSON.parse(localStorage.getItem('articles'));
+        const articles = [];// JSON.parse(localStorage.getItem('articles')) || [];
+
         resolve([...articles, ...fixtureArticles]);
     } else {
         reject(new Error('no local storage'));

@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 import {rootReducer} from "../reducer";
 import {sagas} from '../middlewares/sagas';
 import {randomId} from "../middlewares/randomId";
-
+import {currentDate} from "../middlewares/currentDate";
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -15,7 +15,7 @@ const composeEnhancers =
         }) : compose;
 
 const sagaMiddleware = createSagaMiddleware();
-let middlewares = [sagaMiddleware, randomId];
+let middlewares = [sagaMiddleware, randomId, currentDate];
 
 if (process.env.NODE_ENV !== 'production') {
     middlewares.push(logger);
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(...middlewares),
+    composeEnhancers(applyMiddleware(...middlewares)),
 );
 
 sagas.forEach(saga => sagaMiddleware.run(saga));

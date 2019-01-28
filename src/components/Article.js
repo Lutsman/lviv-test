@@ -1,9 +1,11 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 
 import {Header} from "./Header";
 import {CommentList} from "./CommentList";
+import {articleSelector} from "../selectors/articles";
 
-export const Article = props => {
+export const ArticleComponent = props => {
     const {article} = props;
 
     return (
@@ -17,3 +19,9 @@ export const Article = props => {
         </div>
     );
 };
+
+const mapStateToProps = (state, props) => ({
+    article: articleSelector(state, props),
+});
+
+export const Article = connect(mapStateToProps)(ArticleComponent);

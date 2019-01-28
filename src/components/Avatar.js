@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 export const Avatar = props => {
-    const {} = props;
+    const {user} = props;
 
     return (
         <div className="avatar">
-            <img src="" alt="" />
+            <h3>{user}</h3>
         </div>
     );
 };

@@ -1,18 +1,19 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 
 export const ArticlePreview = props => {
     const {article, handleDelete} = props;
 
     return (
         <div className="article-preview">
-            <a href="/">
-                {article.content.slice(0, 100)}
+            <Link to={`/articles/single/${article.id}`}>
+                {article.title}
                 <span className="counter">
-                    {article.comments.length}
+                    {article.comments ? article.comments.length : 0}
                 </span>
-            </a>
+            </Link>
             <button
-                className="btn-delete"
+                className="button-delete"
                 onClick={handleDelete}>
                 Delete
             </button>

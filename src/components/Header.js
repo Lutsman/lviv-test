@@ -6,7 +6,7 @@ export const Header = props => {
     return (
         <header>
             <div className="">
-                {btnBack && <button className="btn-back">Back</button>}
+                {btnBack && <button className="button-back">Back</button>}
                 {children}
             </div>
         </header>
