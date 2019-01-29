@@ -15,7 +15,7 @@ export const Comment = props => {
                 <button
                     className="button-delete"
                     onClick={handleDelete}>
-                    <i className="fa fa-times-circle" aria-hidden="true"/>
+                    <i className="fa fa-times"/>
                 </button>
             </div>
         </div>
