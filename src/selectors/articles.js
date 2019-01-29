@@ -6,7 +6,7 @@ export const articlesSelector = state => state.articles.items;
 export const loadedSelector = state => state.articles.loaded;
 export const loadingSelector = state => state.articles.loading;
 export const errorsSelector = state => state.articles.errors;
-export const idFromPropsSelector = (state, props) => props.id;
+export const idFromPropsSelector = (state, props) => props.match.params.id;
 
 export const loadArticlesErrorSelector = createSelector(errorsSelector, errors => {
     for (let i = errors.length -1; i >= 0; i--) {

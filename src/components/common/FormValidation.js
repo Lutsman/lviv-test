@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './FormValidation/style.scss';
+
 export class FormValidation extends React.Component {
     state = {};
 

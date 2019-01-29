@@ -50,6 +50,7 @@ export default (state = INITIAL_STATE, action) => {
                         ...payload.article,
                         id: randomId,
                         date: currentDate,
+                        comments: [],
                     },
                 ],
             };

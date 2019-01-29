@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -9,10 +13,47 @@ body {
 h1 {
   font-size: 24px;
   font-weight: bold;
+  margin: 0;
 }
 
 h2 {
   font-size: 20px;
+  margin: 0;
+}
+
+h6 {
+  margin-top: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+button {
+  margin: 0;
+  border: none;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 20px;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 38px;
+  text-align: center;
+  text-decoration: none;
+  transition: .1s ease-in-out;
+  transition-property: color, background-color, border-color;
+  cursor: pointer;
+}
+
+.page {
+  max-width: 700px;
+  min-height: 100vh;
+  margin: 0 auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 header {
@@ -21,14 +62,93 @@ header {
   color: #fff;
   font-size: 12px;
 
-  h1,h2 {
+  h1, h2 {
     margin-bottom: 0;
+  }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+
+  .button-back {
+    margin-right: 15px;
+  }
+}
+
+section {
+  padding: 20px 0;
+}
+
+.container {
+  padding: 0 15px;
+}
+
+input, textarea {
+  width: 100%;
+}
+
+input {
+  padding: 0 10px;
+  line-height: 30px;
+}
+
+textarea {
+  resize: vertical;
+  padding: 10px;
+}
+
+input[type="submit"] {
+  width: auto;
+  padding: 0 20px;
+  background-color: lighten(darkblue, 20%);
+  line-height: 40px;
+  border: none;
+  outline: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: lighten(darkblue, 10%);
   }
 }
 
 .button-delete {
   background-color: red;
   color: #fff;
+
+  &:hover,&:focus {
+    background-color: darken(red, 10%);
+  }
+}
+
+.button-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: red;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  color: #fff;
+
+  &:hover,&:focus {
+    background-color: darken(red, 10%);
+  }
+}
+
+.button-back {
+  padding: 0;
+  font-size: 40px;
+  background-color: transparent;
+  color: #fff;
+
 }
 
 .article-list {
@@ -39,6 +159,9 @@ header {
   > li {
     position: relative;
     border-bottom: 1px solid #ccc;
+  }
+
+  .article-preview {
 
     > a {
       display: block;
@@ -48,6 +171,13 @@ header {
       text-overflow: ellipsis;
       white-space: nowrap;
       text-decoration: none;
+    }
+
+    &:hover {
+
+      .button-delete {
+        display: block;
+      }
     }
   }
 
@@ -72,5 +202,90 @@ header {
     top: 0;
     right: 0;
     bottom: 0;
+    display: none;
+  }
+}
+
+.controls {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.comment-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  > li {
+    margin-bottom: 20px;
+  }
+}
+
+.comment-item {
+  display: flex;
+
+  &:hover {
+    .button-delete {
+      display: block;
+    }
+  }
+}
+
+.comment-avatar, .comment-content {
+  padding: 0 15px;
+}
+
+.comment-avatar {
+  text-align: center;
+  width: 100px;
+  max-width: 100%;
+}
+
+.comment-content {
+  position: relative;
+
+  .button-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+    line-height: normal;
+    font-size: 25px;
+    display: none;
+
+    &:hover {
+      color: lighten(#000, 10%);
+    }
+  }
+}
+
+.avatar {
+  .image-wrapper {
+    font-size: 50px;
+  }
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+.form-submit {
+  text-align: right;
+}
+
+.article-form {
+
+  textarea {
+    min-height: 150px;
+  }
+}
+
+.comment-form {
+
+  textarea {
+    min-height: 75px;
   }
 }

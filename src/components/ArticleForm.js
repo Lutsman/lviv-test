@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from "react-router-dom";
 
 import {FormValidation} from "./common/FormValidation";
 import {articleCreate} from "../AC/articles";
-import {Redirect} from "react-router-dom";
 
 export class ArticleFormComponent extends FormValidation {
     state = {
@@ -39,30 +39,34 @@ export class ArticleFormComponent extends FormValidation {
         if (submited) return (<Redirect to="/articles"/>);
 
         return (
-            <div className="new-article-form">
-                <form onSubmit={this.handleSubmit}>
+            <form className="article-form" onSubmit={this.handleSubmit}>
+                <div className="form-control">
                     <input
                         type="text"
                         placeholder="user"
                         className={this.getValidationClassName('user')}
                         onChange={this.handleChange('user')}
                         value={user}/>
+                </div>
+                <div className="form-control">
                     <input
                         type="text"
                         placeholder="title"
                         className={this.getValidationClassName('title')}
                         onChange={this.handleChange('title')}
                         value={title}/>
-                    <textarea
-                        placeholder="awesome article"
-                        className={this.getValidationClassName('text')}
-                        onChange={this.handleChange('text')}
-                        value={text}/>
-                    <input
-                        type="submit"
-                        disabled={!this.isValidForm()}/>
-                </form>
-            </div>
+                </div>
+                <div className="form-control">
+                        <textarea
+                            placeholder="awesome article"
+                            className={this.getValidationClassName('text')}
+                            onChange={this.handleChange('text')}
+                            value={text}/>
+                </div>
+                <div className="form-control form-submit">
+                    <input type="submit" disabled={!this.isValidForm()}/>
+                </div>
+            </form>
         );
     }
 

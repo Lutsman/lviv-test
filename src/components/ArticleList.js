@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {ArticlePreview} from "./ArticlePreview";
-import {LoadingSpinner} from "./LoadingSpinner";
+import {LoadingSpinner} from "./common/LoadingSpinner";
 import {articleDelete, articlesLoad} from "../AC/articles";
 import {articlesSelector, loadArticlesErrorSelector, loadedSelector, loadingSelector} from "../selectors/articles";
 
@@ -18,11 +18,11 @@ export class ArticleListComponent extends React.Component {
 
     render() {
         return (
-            <div className="article-list">
+            <div className="article-list-wrapper">
                 {this.getBody()}
                 <div className="controls">
-                    <Link to="/articles/new">
-                        <button className="button-add">+</button>
+                    <Link className="button-add" to="/articles/new">
+                        <span>+</span>
                     </Link>
                 </div>
             </div>
@@ -54,7 +54,7 @@ export class ArticleListComponent extends React.Component {
 
         if (!articleItems) return null;
 
-        return (<ul>{articleItems}</ul>);
+        return (<ul className="article-list">{articleItems}</ul>);
     }
 }
 

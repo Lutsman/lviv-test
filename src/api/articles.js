@@ -12,8 +12,7 @@ export const getArticles = () => new Promise((resolve, reject) => {
 
 export const setArticles = articles => new Promise((resolve, reject) => {
     if (typeof(Storage) !== "undefined") {
-        const json = JSON.stringify(articles);
-        localStorage.setItem('articles', json);
+        localStorage.setItem('articles', JSON.stringify(articles));
         resolve();
     } else {
         reject(new Error('no local storage'));

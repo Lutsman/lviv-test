@@ -23,10 +23,10 @@ export const CommentListComponent = props => {
 
 
     return (
-        <section>
+        <div>
             <ul className="comment-list">{body}</ul>
             <CommentForm articleId={article.id}/>
-        </section>
+        </div>
     );
 };
 

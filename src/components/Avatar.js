@@ -5,7 +5,10 @@ export const Avatar = props => {
 
     return (
         <div className="avatar">
-            <h3>{user}</h3>
+            <div className="image-wrapper">
+                <i className="fa fa-user-circle" aria-hidden="true"/>
+            </div>
+            <h6>{user}</h6>
         </div>
     );
 };

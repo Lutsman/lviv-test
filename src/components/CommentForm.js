@@ -29,24 +29,27 @@ export class CommentFormComponent extends FormValidation {
         const {user, text} = this.state;
 
         return (
-            <div className="comment-form">
-                <form onSubmit={this.handleSubmit}>
+            <form className="comment-form" onSubmit={this.handleSubmit}>
+                <div className="form-control">
                     <input
-                        type="text"
-                        placeholder="user"
-                        className={this.getValidationClassName('user')}
-                        onChange={this.handleChange('user')}
-                        value={user}/>
+                    type="text"
+                    placeholder="user"
+                    className={this.getValidationClassName('user')}
+                    onChange={this.handleChange('user')}
+                    value={user}/>
+                </div>
+                <div className="form-control">
                     <textarea
                         type="text"
                         placeholder="comment"
                         className={this.getValidationClassName('text')}
                         onChange={this.handleChange('text')}
                         value={text}/>
-                    <input type="submit"
-                           disabled={!this.isValidForm()}/>
-                </form>
-            </div>
+                </div>
+                <div className="form-control form-submit">
+                    <input type="submit" disabled={!this.isValidForm()}/>
+                </div>
+            </form>
         );
     }
 
